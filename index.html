@@ -1,0 +1,646 @@
+<html>
+	<head>
+	<meta charset='utf-8'>
+	<title>video game</title>
+		
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			 https://firebase.google.com/docs/web/setup#available-libraries -->
+		 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+		 <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-database.js"></script>
+		 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<style>
+		body
+		{ 
+			background-color: #F5F5DC;
+		}
+		.image1{ 
+			position: absolute;
+			bottom: 60px;
+			right: 0px;
+		}
+		.main{
+			position: absolute;
+			width: 600px;
+			height: 270px;
+			left:500px;
+			top: 10px;
+			background-color: #F0F8FF;
+		
+		}
+		.main .image2{
+			position: absolute;
+			top: 90px;
+			left: 140px;
+		}
+		.main h1
+		{
+			position: absolute;
+			width: 200px;
+			height: 50px;
+			left:220px;
+			top:80px;
+			text-shadow: 2px 2px #C0C0C0;
+		}
+		.center 
+		{
+			margin: auto;
+			width: 60%;
+			border: 3px solid #73AD21;
+			padding: 10px;
+		}
+		
+		.main input
+		{	
+			width: 540px;
+			height: 47px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			left: 30px;
+			position: absolute;
+			
+			bottom: 20px;
+		}
+		.main input[type=text] {
+		  padding: 10px;
+		  padding-left: 170px;
+		  margin-top: 8px;
+		  font-size: 17px;
+		  
+		}
+		.main button
+		{
+			position:absolute;
+			right:30px;
+			bottom: 20px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			width: 47px;
+			height: 47px;
+		}
+
+		.main #select
+		{
+			position: absolute;
+			width: 160px;
+			height: 47px;
+			left: 30px;
+			bottom: 20px;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+			background-color: white;
+			padding: 10px;
+		}
+		#t1{
+				visibility: hidden;
+				top: 300px;
+				left: 500px;
+				width: 600px;
+				position: absolute;
+			}
+		#t2{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 500px;
+				width: 600px;
+			}
+		#t3{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 500px;
+				width: 600px;
+			}
+		#t4{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 650px;
+				width: 600px;
+		}
+		#t5{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 650px;
+				width: 600px;
+		}
+		#t6{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 650px;
+				width: 600px;
+		}
+		#t7{
+				visibility: hidden;
+				position: absolute;
+				top: 300px;
+				left: 650px;
+				width: 600px;
+		}
+		#button2{
+			visibility: hidden;
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+			
+		}
+		 table{
+				bottom: 10px;
+		 }
+		 th {
+				width: 150px;
+				height: 42px;
+				line-height: 25px;
+				text-align: center;
+				border: 1px solid #ccc;
+			}		
+			th {
+				background: #eee;
+				font-weight: normal;
+			}		
+			tr {
+				background: white;
+			}		
+			tr:hover {
+				background: #7FFFD4;
+			}		
+			td {
+				width: 150px;
+				height: 41px;
+				line-height: 25px;
+				text-align: center;
+				border: 1px solid #ccc;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class='image1' onclick='get_back()'>
+			<image src='yibu.jpg' align='right' height='500' width='450'>
+		</div>
+		<div class='table1' id='t1'>
+			<table border='1' cellspacing='0'>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Genre</th>
+					<th>Platform</th>
+					<th>Publisher</th>
+					<th>Year</th>
+				</tr>
+				<tr>
+					<td ><div id='one' onclick='get_sales()'></div></td>
+					<td ><div id='two'></div></td>
+					<td ><div id='three'></div></td>
+					<td ><div id='four'></div></td>
+					<td ><div id='five' onclick='get_score2()'></div></td>
+					<td ><div id='six' onclick='get_score1()'></div></td>
+				</tr>
+			</table>
+		</div>
+		<div class='table2' id='t2'>
+			<table border='1' cellspacing='0' class='table2'>
+				<tr>
+					<th>ID</th>
+					<th>Euro</th>
+					<th>USA</th>
+					<th>Japan</th>
+					<th>Other</th>
+					<th>Global</th>
+				</tr>
+				<tr>
+					<td ><div id='first' onclick='get_element()'></div></td>
+					<td ><div id='euro'></div></td>
+					<td ><div id='usa'></div></td>
+					<td ><div id='japan'></div></td>
+					<td ><div id='other'></div></td>
+					<td ><div id='global'></div></td>
+				</tr>
+			</table>
+		</div>
+		<div class='table3' id='t3'>
+			<table border=1 cellspacing='0' id='table3'>
+				<thead>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Genre</th>
+					<th>Platform</th>
+					<th>Publisher</th>
+					<th>Year</th>
+				</thead>
+				<tbody id='body1'>
+				</tbody>
+			</table>
+		</div>
+		<div class='table4' id='t4'>
+			<table border='1' cellspacing='0' id='table4'>
+				<tr>
+					<th>   Year   </th>
+					<th>Avg_Score</th>
+				</tr>
+				<tr>
+					<td ><div id='year' onclick='get_element()'></div></td>
+					<td ><div id='score1'></div></td>
+				</tr>
+			</table>
+		</div>
+		<div class='table5' id='t5'>
+			<table border='1' cellspacing='0' id='table5'>
+				<tr>
+					<th>Publisher</th>
+					<th>Avg_Score</th>
+				</tr>
+				<tr>
+					<td ><div id='publisher' onclick='get_element()'></div></td>
+					<td ><div id='score2'></div></td>
+				</tr>
+			</table>
+		</div>
+		<div class='table6' id='t6'>
+			<table border=1 cellspacing='0' id='table6'>
+				<thead>
+					<th>Publisher</th>
+					<th>Avg_Score</th>
+				</thead>
+				<tbody id='body2'>
+				</tbody>
+			</table>
+		</div>
+		<div class='table7' id='t7'>
+			<table border=1 cellspacing='0' id='table7'>
+				<thead>
+					<th>Year</th>
+					<th>Avg_Score</th>
+				</thead>
+				<tbody id='body3'>
+				</tbody>
+			</table>
+		</div>
+		<div id='back'>
+			<button id='button2' onclick='get_back()'>back</button>
+		</div>
+		<!--<input id='one' name='one' align='center' placeholder="search..." /> 
+		<button><img src='search.jpg' width='27' height='27' /></button> -->
+		<div class="main">
+				<div class='image2'>
+					<image src='handle.jpg' align='right' height='50' width='60'>
+				</div>
+				<h1 align='center'>Video Games</h1>
+				<input id='search' type="text" placeholder="search..." name="search">
+				<select id='select'>
+					<option value="ID">ID</option>
+					<option value="Genre">Genre</option>
+					<option value="Platform">Platform</option>
+					<option value="Publisher">Publisher</option>
+					<option value="Year">Year</option>
+				</select>
+				<button type="submit" onclick='get_element()' id='button1'><img src='search.jpg' width='30' height='30' /></i></button>
+		</div>
+		<script>
+		  // Your web app's Firebase configuration
+		  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		  
+		  var json = {'Square': {'score': 9.1}, 'Sunflowers': {'score': 9.1}, 
+				'ValuSoft': {'score': 9.1}, 'Kadokawa Shoten': {'score': 9.0}, 'SNK': {'score': 8.85}, 
+				'Nihon Falcom Corporation': {'score': 8.8}, 'Havas Interactive': {'score': 8.8}, 'Kool Kizz': {'score': 8.8}, 
+				'Blue Byte': {'score': 8.8}, 'Telegames': {'score': 8.75}, 'GT Interactive': {'score': 8.73}, 
+				'Jester Interactive': {'score': 8.7}, 'SCS Software': {'score': 8.7}, 'Max Five': {'score': 8.7}, 
+				'Number None': {'score': 8.6}, 'Flashpoint Games': {'score': 8.6}, 'Valve Software': {'score': 8.6}, 
+				'Strategy First': {'score': 8.6}, 'Graphsim Entertainment': {'score': 8.6}, 'Psygnosis': {'score': 8.5}, 
+				'Daedalic': {'score': 8.5}, 'Crimson Cow': {'score': 8.5}, '2D Boy': {'score': 8.5}, 'O3 Entertainment': {'score': 8.5},
+				'Level 5': {'score': 8.5}, 'SquareSoft': {'score': 8.49}, 'Pacific Century Cyber Works': {'score': 8.4}, 
+				'Indie Games': {'score': 8.4}, 'Valve': {'score': 8.4}, 'Devolver Digital': {'score': 8.4}, 
+				'Sony Oznline Entertainment': {'score': 8.4}, 'Falcom Corporation': {'score': 8.37}, 'Virgin Interactive': {'score': 8.32}, 
+				'Atlus': {'score': 8.31}, 'Funcom': {'score': 8.3}, 'Funsta': {'score': 8.3}, 'Phantagram': {'score': 8.3}, 
+				'Mamba Games': {'score': 8.3}, 'Agetec': {'score': 8.3}, 'NCSoft': {'score': 8.28}, 'Wanadoo': {'score': 8.27}, 
+				'MC2 Entertainment': {'score': 8.23}, 'Gotham Games': {'score': 8.2}, 'id Software': {'score': 8.2}, 
+				'Pinnacle': {'score': 8.2}, 'HMH Interactive': {'score': 8.2}, 'ASCII Entertainment': {'score': 8.2}, 
+				'Codemasters Online': {'score': 8.2}, '5pb': {'score': 8.2}, 'Monte Christo Multimedia': {'score': 8.2}, 
+				'Enterbrain': {'score': 8.17}, 'AQ Interactive': {'score': 8.15}, 'Sony Computer Entertainment Europe': {'score': 8.14},
+				'RedOctane': {'score': 8.12}, 'Yacht Club Games': {'score': 8.12}, 'Interplay': {'score': 8.12}, 
+				'Enix Corporation': {'score': 8.1}, 'Headup Games': {'score': 8.1}, 'Destination Software, Inc': {'score': 8.1}, 
+				'Square EA': {'score': 8.1}, 'Tomy Corporation': {'score': 8.1}, 'Microprose': {'score': 8.1}, 'PopCap Games': {'score': 8.09}, 
+				'Milestone S.r.l': {'score': 8.08}, 'Square Enix ': {'score': 8.05}, 'Zushi Games': {'score': 8.05}, 'Russel': {'score': 8.0}, 
+				'Hasbro Interactive': {'score': 7.95}, 'Nintendo': {'score': 7.92}, 'Sting': {'score': 7.92}, 'Ghostlight': {'score': 7.91}};
+				
+		  var json2 = {"1998": {"score": 8.51}, "1999": {"score": 8.48}, "1997": {"score": 8.47}, "1996": {"score": 8.4}, 
+		  "1992": {"score": 8.2}, "2003": {"score": 7.86}, "2004": {"score": 7.75}, "2001": {"score": 7.59}, "2002": {"score": 7.59}, 
+		  "2000": {"score": 7.53}, "2005": {"score": 7.51}, "2006": {"score": 7.25}, "N/A": {"score": 7.05}, "2009": {"score": 6.99}, 
+		  "2008": {"score": 6.95}, "2007": {"score": 6.9}, "2010": {"score": 6.88}, "2012": {"score": 6.82}, "2015": {"score": 6.67}, 
+		  "2016": {"score": 6.63}, "2011": {"score": 6.62}, "2014": {"score": 6.58}, "2013": {"score": 6.47}, "1994": {"score": 6.3}, 
+		  "1985": {"score": 5.8}, "1988": {"score": 2.2}}
+		  
+		  
+		  var firebaseConfig = {
+			apiKey: "AIzaSyBthU_mzENskfdrYuXw7d4yE8jVCHVpDMs",
+			authDomain: "video-games-8113e.firebaseapp.com",
+			databaseURL: "https://video-games-8113e.firebaseio.com",
+			projectId: "video-games-8113e",
+			storageBucket: "video-games-8113e.appspot.com",
+			messagingSenderId: "801861516693",
+			appId: "1:801861516693:web:8bd33f31d73f3830788a9c",
+			measurementId: "G-HMQC20ZQMD"
+		  };
+		  // Initialize Firebase
+		  firebase.initializeApp(firebaseConfig);
+		  
+		  
+		function get_element(){
+			//var t1 = document.getElementById('t1');
+			//var t2 = document.getElementById('t2');
+			
+			var value1 = document.getElementById('one');
+			var value2 = document.getElementById('two');
+			var value3 = document.getElementById('three');
+			var value4 = document.getElementById('four');
+			var value5 = document.getElementById('five');
+			var value6 = document.getElementById('six');
+			var select = document.getElementById('select');
+			var select_value = select.options[select.selectedIndex].text
+			
+			var input = document.getElementById('search')
+			console.log(select_value)
+			var element = input.value
+			console.log(element)
+			var database = firebase.database();
+			
+			if (select_value == 'ID'){
+		
+				var content = 'games/'+ element
+				var ref = database.ref().child(content);
+				ref.on('value', function(snapshot){
+				console.log(JSON.stringify(snapshot.val()));
+				console.log(snapshot.val().Name)
+				console.log(value1)
+				value1.innerText = snapshot.val().ID
+				value2.innerText = snapshot.val().Name
+				value3.innerText = snapshot.val().Genre
+				value4.innerText = snapshot.val().Platform
+				value5.innerText = snapshot.val().Publisher
+				value6.innerText = snapshot.val().Year_of_Release
+				
+		  });	t1.style.visibility = 'visible';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'hidden';
+		  }	
+		  else if (select_value == 'Publisher'){
+				console.log('publisher');
+				t1.style.visibility = 'hidden';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'visible';
+				t7.style.visibility = 'hidden';
+				
+				var table = document.createElement("table");
+				var body = document.createElement("tbody");
+				var div = document.createElement("div");
+					//document.getElementById('table3').removeChild(body);
+				$('#table6 tbody').html("");
+				var obj = eval(json);
+				var i = 1;
+				for (var prop in obj){
+					if (i>element){break}
+					
+					var tr = document.createElement("tr");
+					var td1 = document.createElement("td");
+					var td2 = document.createElement("td");
+					
+					td1.innerText = prop;
+					td2.innerText = obj[prop].score;
+					
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					
+					document.getElementById('body2').appendChild(tr);
+					console.log(obj[prop].score);
+					i++;
+				}
+		  }
+		  else if (select_value == 'Year'){
+				t1.style.visibility = 'hidden';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'visible';
+				
+				var table = document.createElement("table");
+				var body = document.createElement("tbody");
+				var div = document.createElement("div");
+					//document.getElementById('table3').removeChild(body);
+				$('#table7 tbody').html("");
+				var obj = eval(json2);
+				var i = 1;
+				for (var prop in json2){
+					if (i>element){break}
+					
+					var tr = document.createElement("tr");
+					var td1 = document.createElement("td");
+					var td2 = document.createElement("td");
+					
+					td1.innerText = prop;
+					td2.innerText = obj[prop].score;
+					
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					
+					document.getElementById('body3').appendChild(tr);
+					console.log(obj[prop].score);
+					i++;
+				}
+		  
+		  }
+		  else{
+			
+			var name = input.value
+			var curl = 'https://video-games-8113e.firebaseio.com/games.json?orderBy=%22'+ select_value +'%22&equalTo=%22'+ name +'%22&limitToFirst=10'
+			fetch(curl).then(function(snapshot){
+			console.log(snapshot)
+			}).catch(function(error){
+			console.log('error')
+			})
+			
+			console.log('hello3')
+			
+			fetchText(curl)
+			
+			}
+		}
+			function get_sales(){
+				var t1 = document.getElementById('t1');
+				var t2 = document.getElementById('t2');
+				t1.style.visibility = 'hidden';
+				t2.style.visibility = 'visible';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'hidden';
+				
+				var first = document.getElementById('first');
+				var euro = document.getElementById('euro');
+				var usa = document.getElementById('usa');
+				var japan = document.getElementById('japan');
+				var other = document.getElementById('other');
+				var global = document.getElementById('global');
+				
+				var input = document.getElementById('search')
+				//console.log(select_value)
+				var element = input.value
+				console.log(element)
+				var database = firebase.database();
+				
+				var content = 'sales/'+ element
+				var ref = database.ref().child(content);
+				ref.on('value', function(snapshot){
+				console.log(JSON.stringify(snapshot.val()));
+				console.log(snapshot.val().Name)
+				
+				first.innerText = snapshot.val().ID
+				euro.innerText = snapshot.val().EU_Sales
+				usa.innerText = snapshot.val().NA_Sales
+				japan.innerText = snapshot.val().JP_Sales
+				other.innerText = snapshot.val().Other_Sales
+				global.innerText = snapshot.val().Global_Sales
+				console.log('sales')
+				});
+				
+			}
+			function get_score1(){
+				var year = document.getElementById('six').innerText;
+				var new_year = document.getElementById('year')
+				var score1 = document.getElementById('score1');
+				
+				var database = firebase.database();
+				var content = 'year/'+ year
+				var ref = database.ref().child(content);
+				
+				ref.on('value', function(snapshot){
+					console.log(snapshot.val().score);
+					new_year.innerText = year;
+					score1.innerText = snapshot.val().score;
+				});
+				console.log(year);
+				t1.style.visibility = 'hidden';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'visible';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'hidden';
+				
+			}
+			
+			function get_score2(){
+				t1.style.visibility = 'hidden';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'visible';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'hidden';
+				
+				var publisher = document.getElementById('five').textContent;
+				console.log(publisher);
+				var new_pub = document.getElementById('publisher')
+				var score2 = document.getElementById('score2');
+				new_pub.innerText = publisher;
+				
+				var obj = eval(json);
+				score2.innerText = obj[publisher].score;
+				
+			}
+			function get_back(){
+			
+				t1.style.visibility = 'visible';
+				t2.style.visibility = 'hidden';
+				t3.style.visibility = 'hidden';
+				t4.style.visibility = 'hidden';
+				t5.style.visibility = 'hidden';
+				t6.style.visibility = 'hidden';
+				t7.style.visibility = 'hidden';
+				button2.style.visibility = 'hidden';
+			
+			
+			}
+			async function fetchText(curl) {
+				let response = await fetch(curl);
+
+				console.log(response.status); // 200
+				console.log(response.statusText); // OK
+
+				if (response.status === 200) {
+					var data = await response.text();
+					//console.log(typeof data)
+					data = JSON.parse(data)
+					console.log(typeof data)
+					
+					var table = document.createElement("table");
+					var body = document.createElement("tbody");
+					var div = document.createElement("div");
+					//document.getElementById('table3').removeChild(body);
+					$('#table3 tbody').html("");
+					for (var prop in data){
+						
+						var sub_data = JSON.stringify(data[prop])
+						console.log(data[prop].Name)
+						var tr = document.createElement("tr");
+						var td1 = document.createElement("td");
+						var td2 = document.createElement("td");
+						var td3 = document.createElement("td");
+						var td4 = document.createElement("td");
+						var td5 = document.createElement("td");
+						var td6 = document.createElement("td");
+						
+						td1.innerText = data[prop].ID;
+						td2.innerText = data[prop].Name;
+						td3.innerText = data[prop].Genre;
+						td4.innerText = data[prop].Platform;
+						td5.innerText = data[prop].Publisher;
+						td6.innerText = data[prop].Year_of_Release;
+						
+						tr.appendChild(td1);
+						tr.appendChild(td2);
+						tr.appendChild(td3);
+						tr.appendChild(td4);
+						tr.appendChild(td5);
+						tr.appendChild(td6);
+						document.getElementById('body1').appendChild(tr);
+					}
+					t1.style.visibility = 'hidden';
+					t2.style.visibility = 'hidden';
+					t3.style.visibility = 'visible';
+					t4.style.visibility = 'hidden';
+					t5.style.visibility = 'hidden';
+					t6.style.visibility = 'hidden';
+					t7.style.visibility = 'hidden';
+					
+        // handle data
+				}
+			}
+		</script>
+		
+		
+		
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		
+		
+	</body>
+</html>
